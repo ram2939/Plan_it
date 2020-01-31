@@ -10,7 +10,8 @@ class WebPageViewState extends State<WebPageView>{
 
   Widget build(BuildContext context)
   { 
-    return (new WebviewScaffold(
+    return (new WillPopScope(
+           child: WebviewScaffold(
           url: "https://192.168.24.47:3000",
           withJavascript: true,
           appBar: new AppBar(
@@ -19,13 +20,18 @@ class WebPageViewState extends State<WebPageView>{
               icon: Icon(Icons.arrow_back),
               onPressed: ()
               {
-                // Navigator.pop(context);
                 Navigator.push(context, MaterialPageRoute(builder:(context)=>WebPageView()));
               },
             ),
           ),
           ignoreSSLErrors: true,
           geolocationEnabled: true,
-        ));
+        ),
+        onWillPop: ()
+        {
+          Navigator.push(context, MaterialPageRoute(builder:(context)=>WebPageView()));
+        },
+        )
+        );
   }
 }
