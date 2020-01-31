@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import 'package:geolocator/geolocator.dart';
 class WebPageView extends StatefulWidget{
   @override
   State<StatefulWidget> createState(){
@@ -7,7 +8,24 @@ class WebPageView extends StatefulWidget{
   }
 }
 class WebPageViewState extends State<WebPageView>{
+  Position _currentPosition;
+  @override
+  void initState()
+  {
+    super.initState();
+    final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
 
+    geolocator
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
+        .then((Position position) {
+      setState(() {
+        _currentPosition = position;
+      });
+    }).catchError((e) {
+      print(e);
+    });
+  }
+  @override
   Widget build(BuildContext context)
   { 
     return (new WillPopScope(

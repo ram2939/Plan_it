@@ -6,6 +6,8 @@
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>For Map</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>MAP</string>
 	<key>NSAllowsArbitraryLoadsInWebContent</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
