@@ -13,6 +13,7 @@ class WebPageView extends StatelessWidget{
           ),
           ignoreSSLErrors: true,
           geolocationEnabled: true,
+          debuggingEnabled: true
         )
     );
   }
