@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:plan_it/SOS.dart';
-class WebPageView extends StatefulWidget{
+import 'package:plan_it/WebPageView.dart';
+class SOS extends StatefulWidget{
   @override
   State<StatefulWidget> createState(){
-    return WebPageViewState();
+    return SOSstate();
   }
 }
-class WebPageViewState extends State<WebPageView>{
+class SOSstate extends State<SOS>{
   Position _currentPosition;
   @override
   void initState()
@@ -32,10 +32,10 @@ class WebPageViewState extends State<WebPageView>{
     return (new WillPopScope(
            child: WebviewScaffold(
           
-          url: "https://192.168.24.47:3000",
+          url: "https://192.168.24.47:3000/police",
           withJavascript: true,
           appBar: new AppBar(
-            title: new Text("PlanIT!"),
+            title: new Text("Nearest Police Station"),
             leading: IconButton(
               icon: Icon(Icons.arrow_back),
               onPressed: ()
@@ -43,15 +43,6 @@ class WebPageViewState extends State<WebPageView>{
                 Navigator.push(context, MaterialPageRoute(builder:(context)=>WebPageView()));
               },
             ),
-            actions: <Widget>[
-            // action button
-            IconButton(
-              icon: Icon(Icons.add_location),
-              tooltip: "Find the Nearest Police Station",
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>SOS()));
-              },
-            ),]
           ),
           ignoreSSLErrors: true,
           geolocationEnabled: true,
